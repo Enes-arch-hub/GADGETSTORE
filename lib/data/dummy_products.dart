@@ -17,7 +17,7 @@ const List<Product> dummyProducts = [
   ),
   Product(
     id: 3,
-    name: 'Sony WH-1000XM5 Headphones',
+    name: 'Sony WH Headphones',
     category: 'Audio',
     price: 34999,
     imagePath: 'assets/images/sony_wh1000xm5.webp',
@@ -38,7 +38,7 @@ const List<Product> dummyProducts = [
   ),
   Product(
     id: 6,
-    name: 'Logitech MX Master 3 Mouse',
+    name: 'Logitech MX Mouse',
     category: 'Accessories',
     price: 9999,
     imagePath: 'assets/images/logitech_mx_master_3.webp',
@@ -66,7 +66,7 @@ const List<Product> dummyProducts = [
   ),
   Product(
     id: 10,
-    name: 'Anker 65W USB-C Charger',
+    name: 'Anker 65W Charger',
     category: 'Accessories',
     price: 3999,
     imagePath: 'assets/images/anker_65w_charger.webp',
