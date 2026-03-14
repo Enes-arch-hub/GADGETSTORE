@@ -6,13 +6,33 @@ import '../utils/price_formatter.dart';
 import '../utils/app_theme.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({super.key});
+  final List<CartItem> cartItems;
+  final VoidCallback onPurchaseComplete;
+  const CartScreen({
+    super.key, 
+    required this.cartItems,
+    required this.onPurchaseComplete});
+    
+    double get _totalPrice{
+    return cartItems.fold(0, (sum, item) => sum + item.subtotal);
+    }
+    void _handlePurchase(BuildContext context){
+      onPurchaseComplete();
+      Navigator.pop(context);
+      WidgetsBinding.instance.addPostFrameCallback((_){
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Purchase successful!'),
+           backgroundColor: AppTheme.successGreen,
+          duration: Duration(seconds: 3),
+          ),
+         
+        );
+      });
+
+    }
 
   @override
   Widget build(BuildContext context) {
-    const List<CartItem> cartItems = [];
-    const double totalPrice = 0;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Cart'),
@@ -37,9 +57,9 @@ class CartScreen extends StatelessWidget {
 
                 // -- Order Summary Footer --
                 _OrderSummaryFooter(
-                  totalPrice: totalPrice,
+                  totalPrice: _totalPrice,
                   onBuyNow: () {
-                    // no action yet
+                    _handlePurchase(context);
                   },
                 ),
               ],
